@@ -1,6 +1,6 @@
-package com.cgi.cleaner.accounting.dao;
+package clean.code.cleaner.accounting.dao;
 
-import com.cgi.cleaner.accounting.entity.Account;
+import clean.code.cleaner.accounting.entity.Account;
 
 import java.math.BigDecimal;
 

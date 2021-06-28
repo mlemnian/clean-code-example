@@ -1,4 +1,4 @@
-package com.cgi.ugly.accounting.service;
+package clean.code.ugly.accounting.service;
 
 import java.sql.Connection;
 

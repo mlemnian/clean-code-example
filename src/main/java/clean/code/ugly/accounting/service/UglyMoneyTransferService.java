@@ -1,7 +1,7 @@
-package com.cgi.ugly.accounting.service;
+package clean.code.ugly.accounting.service;
 
-import com.cgi.ugly.accounting.entity.Account;
-import com.cgi.ugly.accounting.entity.AccountTransaction;
+import clean.code.ugly.accounting.entity.Account;
+import clean.code.ugly.accounting.entity.AccountTransaction;
 
 import java.math.BigDecimal;
 import java.sql.Connection;

@@ -1,4 +1,4 @@
-package com.cgi.cleaner.accounting.entity;
+package clean.code.cleaner.accounting.entity;
 
 import java.math.BigDecimal;
 

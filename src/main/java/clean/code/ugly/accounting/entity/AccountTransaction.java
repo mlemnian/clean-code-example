@@ -1,4 +1,4 @@
-package com.cgi.ugly.accounting.entity;
+package clean.code.ugly.accounting.entity;
 
 import java.math.BigDecimal;
 

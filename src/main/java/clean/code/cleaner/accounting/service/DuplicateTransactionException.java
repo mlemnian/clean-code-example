@@ -1,4 +1,4 @@
-package com.cgi.cleaner.accounting.service;
+package clean.code.cleaner.accounting.service;
 
 public class DuplicateTransactionException extends RuntimeException {
     public DuplicateTransactionException(String msg) {

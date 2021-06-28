@@ -1,10 +1,10 @@
-package com.cgi.cleaner.accounting.service;
+package clean.code.cleaner.accounting.service;
 
-import com.cgi.cleaner.accounting.dao.AccountDAO;
-import com.cgi.cleaner.accounting.dao.TransactionDAO;
-import com.cgi.cleaner.accounting.entity.Account;
-import com.cgi.cleaner.accounting.entity.AccountTransaction;
-import com.cgi.cleaner.accounting.entity.FundTransferTxn;
+import clean.code.cleaner.accounting.dao.AccountDAO;
+import clean.code.cleaner.accounting.dao.TransactionDAO;
+import clean.code.cleaner.accounting.entity.Account;
+import clean.code.cleaner.accounting.entity.AccountTransaction;
+import clean.code.cleaner.accounting.entity.FundTransferTxn;
 
 import java.math.BigDecimal;
 
