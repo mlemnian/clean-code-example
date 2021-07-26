@@ -1,15 +1,13 @@
 package clean.code.ugly.accounting.entity;
 
-import java.math.BigDecimal;
-
 public class AccountTransaction {
 
     public String getTargetAcno() {
         return "";
     }
 
-    public BigDecimal getAmount()
+    public long getAmount()
     {
-        return BigDecimal.ZERO;
+        return 0L;
     }
 }

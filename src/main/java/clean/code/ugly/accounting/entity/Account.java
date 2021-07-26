@@ -1,13 +1,11 @@
 package clean.code.ugly.accounting.entity;
 
-import java.math.BigDecimal;
-
 public class Account {
 
     String accountNumber;
-    BigDecimal balance;
+    long balance;
     boolean isOverdraftAllowed;
-    BigDecimal overdraftLimit;
+    long overdraftLimit;
 
     public String getAcno() {
         return this.accountNumber;
@@ -17,19 +15,19 @@ public class Account {
         return this.isOverdraftAllowed;
     }
 
-    public BigDecimal getBalance() {
+    public long getBalance() {
         return this.balance;
     }
 
-    public void debit(BigDecimal amount) {
-        this.balance = this.balance.subtract(amount);
+    public void debit(long amount) {
+        this.balance -= amount;
     }
 
-    public void credit(BigDecimal amount) {
-        this.balance = this.balance.add(amount);
+    public void credit(long amount) {
+        this.balance += amount;
     }
 
-    public BigDecimal getOverdraftLimit() {
+    public long getOverdraftLimit() {
         return this.overdraftLimit;
     }
 }
