@@ -1,4 +1,4 @@
-package clean.code.cleaner.accounting.entity;
+package clean.code.clean.accounting.entity;
 
 public class FundTransferTxn {
 

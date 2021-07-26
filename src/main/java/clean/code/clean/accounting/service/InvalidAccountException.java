@@ -1,4 +1,4 @@
-package clean.code.cleaner.accounting.service;
+package clean.code.clean.accounting.service;
 
 public class InvalidAccountException extends RuntimeException {
     public InvalidAccountException(String msg) {

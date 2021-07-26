@@ -3,7 +3,6 @@ package clean.code.ugly.accounting.service;
 import clean.code.ugly.accounting.entity.Account;
 import clean.code.ugly.accounting.entity.AccountTransaction;
 
-import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,7 +15,7 @@ public class UglyMoneyTransferService {
 
     private static final Logger logger = Logger.getLogger(UglyMoneyTransferService.class.getName());
 
-    public void transferFunds(Account source, Account target, BigDecimal amount, boolean allowDuplicateTxn)
+    public void transferFunds(Account source, Account target, long amount, boolean allowDuplicateTxn)
             throws IllegalArgumentException, RuntimeException {
         Connection conn = null;
         try {
@@ -43,17 +42,18 @@ public class UglyMoneyTransferService {
                 throw new IllegalArgumentException("Invalid Target ACNO");
             }
             if(!sourceAccount.isOverdraftAllowed()) {
-                if((sourceAccount.getBalance().subtract(amount)).compareTo(BigDecimal.ZERO) < 0) {
+                if(sourceAccount.getBalance() - amount < 0L) {
                     throw new RuntimeException("Insufficient Balance");
                 }
             } else {
-                if(((sourceAccount.getBalance().add(sourceAccount.getOverdraftLimit())).subtract(amount)).compareTo(BigDecimal.ZERO) < 0) {
+                if(sourceAccount.getBalance() + sourceAccount.getOverdraftLimit() - amount < 0) {
                     throw new RuntimeException("Insufficient Balance, Exceeding Overdraft Limit");
                 }
             }
             AccountTransaction lastTxn = null ; //JDBC code to obtain last transaction of sourceAccount
             if(lastTxn != null) {
-                if(lastTxn.getTargetAcno().equals(targetAccount.getAcno()) && lastTxn.getAmount().equals(amount) && !allowDuplicateTxn) {
+                if(lastTxn.getTargetAcno().equals(targetAccount.getAcno()) && lastTxn.getAmount() == amount
+                  && !allowDuplicateTxn) {
                     throw new RuntimeException("Duplicate transaction exception");//ask for confirmation and proceed
                 }
             }
