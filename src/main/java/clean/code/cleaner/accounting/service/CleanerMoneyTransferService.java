@@ -1,10 +1,10 @@
 package clean.code.cleaner.accounting.service;
 
+import clean.code.clean.accounting.entity.FundTransferTxn;
 import clean.code.cleaner.accounting.dao.AccountDAO;
 import clean.code.cleaner.accounting.dao.TransactionDAO;
 import clean.code.cleaner.accounting.entity.Account;
 import clean.code.cleaner.accounting.entity.AccountTransaction;
-import clean.code.cleaner.accounting.entity.FundTransferTxn;
 import javax.inject.Inject;
 
 // Example from https://dzone.com/articles/clean-code-dont-mix-different
