@@ -1,14 +1,12 @@
 package clean.code.cleaner.accounting.service;
 
-import clean.code.clean.accounting.entity.FundTransferTxn;
-import clean.code.clean.accounting.service.CleanMoneyTransferService;
+import clean.code.cleaner.accounting.entity.FundTransferTxn;
 import clean.code.cleaner.accounting.dao.AccountDAO;
 import clean.code.cleaner.accounting.dao.TransactionDAO;
 import clean.code.cleaner.accounting.entity.Account;
 import clean.code.cleaner.accounting.entity.AccountTransaction;
 import java.util.logging.Logger;
 import javax.inject.Inject;
-import lombok.AllArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
