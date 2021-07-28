@@ -5,10 +5,14 @@ import clean.code.clean.accounting.dao.TransactionDAO;
 import clean.code.clean.accounting.entity.Account;
 import clean.code.clean.accounting.entity.FundTransferTxn;
 import clean.code.clean.accounting.entity.AccountTransaction;
+import clean.code.ugly.accounting.service.UglyMoneyTransferService;
+import java.util.logging.Logger;
 
 // Example from https://dzone.com/articles/clean-code-dont-mix-different
 
 public class CleanMoneyTransferService {
+
+    private static final Logger logger = Logger.getLogger(CleanMoneyTransferService.class.getName());
 
     public void transferFunds(FundTransferTxn txn) {
         Account sourceAccount = validateAndGetAccount(txn.getSourceAccount().getAcno());
@@ -19,7 +23,7 @@ public class CleanMoneyTransferService {
     }
 
     private Account validateAndGetAccount(String acno){
-        Account account = AccountDAO.getAccount(acno); // nicht gut!
+        Account account = AccountDAO.getAccount(acno); // Schlechte Testbarkeit!
         if(account == null) {
             throw new InvalidAccountException("Invalid ACNO :" + acno);
         }
@@ -39,7 +43,7 @@ public class CleanMoneyTransferService {
     }
 
     private void checkForDuplicateTransaction(FundTransferTxn txn) {
-        AccountTransaction lastTxn = TransactionDAO.getLastTransaction(txn.getSourceAccount().getAcno());  // nicht gut!
+        AccountTransaction lastTxn = TransactionDAO.getLastTransaction(txn.getSourceAccount().getAcno());  // Schlechte Testbarkeit!
         if(lastTxn != null) {
             if(lastTxn.getTargetAcno().equals(txn.getTargetAccount().getAcno())
                     && lastTxn.getAmount() == txn.getAmount()
@@ -52,6 +56,6 @@ public class CleanMoneyTransferService {
     private void makeTransfer(Account sourceAccount, Account targetAccount, long amount) {
         sourceAccount.debit(amount);
         targetAccount.credit(amount);
-        //TransactionService.saveTransaction(source, target, amount);
+        TransactionDAO.saveTransaction(sourceAccount, targetAccount, amount);
     }
 }
