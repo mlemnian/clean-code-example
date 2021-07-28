@@ -1,18 +1,28 @@
 package clean.code.cleaner.accounting.service;
 
 import clean.code.clean.accounting.entity.FundTransferTxn;
+import clean.code.clean.accounting.service.CleanMoneyTransferService;
 import clean.code.cleaner.accounting.dao.AccountDAO;
 import clean.code.cleaner.accounting.dao.TransactionDAO;
 import clean.code.cleaner.accounting.entity.Account;
 import clean.code.cleaner.accounting.entity.AccountTransaction;
+import java.util.logging.Logger;
 import javax.inject.Inject;
+import lombok.AllArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.java.Log;
 
 // Example from https://dzone.com/articles/clean-code-dont-mix-different
 
+//@Log
+//@RequiredArgsConstructor(onConstructor = @__(@Inject))
 public class CleanerMoneyTransferService {
 
-    private final AccountDAO accountDAO;
-    private final TransactionDAO transactionDAO;
+    private static final Logger logger = Logger.getLogger(CleanerMoneyTransferService.class.getName());
+
+    private final @NonNull AccountDAO accountDAO;
+    private final @NonNull TransactionDAO transactionDAO;
 
     @Inject
     CleanerMoneyTransferService(AccountDAO accountDAO, TransactionDAO transactionDAO) {
@@ -62,6 +72,6 @@ public class CleanerMoneyTransferService {
     private void makeTransfer(Account sourceAccount, Account targetAccount, long amount) {
         sourceAccount.debit(amount);
         targetAccount.credit(amount);
-        //TransactionService.saveTransaction(source, target, amount);
+        transactionDAO.saveTransaction(sourceAccount, targetAccount, amount);
     }
 }
