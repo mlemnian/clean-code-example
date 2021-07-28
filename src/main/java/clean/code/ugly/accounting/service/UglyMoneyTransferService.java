@@ -59,7 +59,7 @@ public class UglyMoneyTransferService {
             }
             sourceAccount.debit(amount);
             targetAccount.credit(amount);
-            //TransactionService.saveTransaction(source, target, amount);
+            TransactionService.saveTransaction(source, target, amount);
         } catch(Exception e) {
             logger.log(Level.SEVERE, e.getMessage());
         } finally {
